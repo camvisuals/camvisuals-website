@@ -675,10 +675,13 @@
 const heroVideo = document.getElementById('heroVideo');
 if (heroVideo) {
   heroVideo.muted = true;
+  heroVideo.setAttribute('muted', '');
+  heroVideo.playsInline = true;
   const tryPlay = () => heroVideo.play().catch(() => {});
+  tryPlay();
   heroVideo.addEventListener('loadedmetadata', tryPlay);
-  document.addEventListener('touchstart', tryPlay, { once: true });
-  window.addEventListener('load', tryPlay);
+  heroVideo.addEventListener('canplay', tryPlay);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) tryPlay(); });
 }
     
   /* ── 5-SECOND THUMBNAIL LOOP ── */
