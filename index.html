@@ -1698,18 +1698,11 @@
     /* ── SPRACHAUSWAHL-MODAL ── */
     function chooseLanguage(lang) {
       setLanguage(lang);
-      try { localStorage.setItem('camvisuals_lang', lang); } catch (e) {}
       document.getElementById('langModal').classList.remove('open');
     }
 
     (function initLangModal() {
-      let savedLang = null;
-      try { savedLang = localStorage.getItem('camvisuals_lang'); } catch (e) {}
-      if (savedLang === 'de' || savedLang === 'en') {
-        setLanguage(savedLang);
-      } else {
-        document.getElementById('langModal').classList.add('open');
-      }
+      document.getElementById('langModal').classList.add('open');
     })();
 
     /* ── CURSOR ── */
