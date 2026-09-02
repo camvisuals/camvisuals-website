@@ -326,6 +326,12 @@
       height: auto;
       object-fit: cover;
       pointer-events: none;
+      opacity: 0;
+      transition: opacity 1.4s ease;
+    }
+
+    .hero-video-wrap video.is-playing {
+      opacity: 1;
     }
 
     /* VERLAUF: Unten dunkel nach oben aufhellend */
@@ -1262,6 +1268,66 @@
       text-transform: uppercase;
     }
 
+    /* ══════════════════════════════════
+       SPRACHAUSWAHL-MODAL
+    ══════════════════════════════════ */
+    .lang-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10, 10, 8, .97);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .lang-modal.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lang-modal-box {
+      text-align: center;
+      padding: 0 var(--sec);
+    }
+
+    .lang-modal-title {
+      font-size: 9px;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 28px;
+    }
+
+    .lang-modal-choices {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .lang-modal-btn {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: transparent;
+      border: 1px solid rgba(240, 237, 230, .18);
+      padding: 16px 40px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .lang-modal-btn:hover {
+      color: var(--bg);
+      background: var(--yellow);
+      border-color: var(--yellow);
+    }
+
     /* ── FADE ── */
     .fade-up {
       opacity: 0;
@@ -1279,6 +1345,17 @@
 
   <div class="cur" id="cur"></div>
   <div class="cur-r" id="curR"></div>
+
+  <!-- SPRACHAUSWAHL -->
+  <div class="lang-modal" id="langModal">
+    <div class="lang-modal-box">
+      <div class="lang-modal-title">Choose your language / Sprache wählen</div>
+      <div class="lang-modal-choices">
+        <button class="lang-modal-btn" onclick="chooseLanguage('de')">Deutsch</button>
+        <button class="lang-modal-btn" onclick="chooseLanguage('en')">English</button>
+      </div>
+    </div>
+  </div>
 
   <!-- LIGHTBOX -->
   <div class="lb" id="lb">
@@ -1618,6 +1695,23 @@
       }
     }
 
+    /* ── SPRACHAUSWAHL-MODAL ── */
+    function chooseLanguage(lang) {
+      setLanguage(lang);
+      try { localStorage.setItem('camvisuals_lang', lang); } catch (e) {}
+      document.getElementById('langModal').classList.remove('open');
+    }
+
+    (function initLangModal() {
+      let savedLang = null;
+      try { savedLang = localStorage.getItem('camvisuals_lang'); } catch (e) {}
+      if (savedLang === 'de' || savedLang === 'en') {
+        setLanguage(savedLang);
+      } else {
+        document.getElementById('langModal').classList.add('open');
+      }
+    })();
+
     /* ── CURSOR ── */
     const cur = document.getElementById('cur');
     const curR = document.getElementById('curR');
@@ -1698,9 +1792,12 @@
       tryPlay();
       heroVideo.addEventListener('loadedmetadata', tryPlay);
       heroVideo.addEventListener('canplay', tryPlay);
+      heroVideo.addEventListener('playing', () => heroVideo.classList.add('is-playing'));
       document.addEventListener('visibilitychange', () => {
         if (!document.hidden) tryPlay();
       });
+      document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+      document.addEventListener('scroll', tryPlay, { once: true, passive: true });
     }
 
     /* ── 5-SECOND THUMBNAIL LOOP ── */
