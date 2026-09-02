@@ -93,9 +93,10 @@
   #home.active{display:flex}
 
   .hero-video-wrap{position:absolute;inset:0;z-index:0;overflow:hidden}
-  .hero-video-wrap video{position:absolute;top:50%;left:50%;
-    transform:translate(-50%,-50%);min-width:100%;min-height:100%;width:auto;height:auto;
-    object-fit:cover;pointer-events:none}
+  .hero-video-wrap video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+  }
   .hero-video-overlay{position:absolute;inset:0;
     background:linear-gradient(to top,rgba(10,10,8,1) 0%,rgba(10,10,8,.7) 30%,rgba(10,10,8,.2) 60%)}
 
