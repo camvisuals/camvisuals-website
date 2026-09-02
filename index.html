@@ -365,7 +365,7 @@
   <div class="page active" id="home" style="padding-top:0;min-height:100vh;display:flex;flex-direction:column;position:relative;overflow:hidden">
 
     <div class="hero-video-wrap">
-      <video autoplay muted loop playsinline>
+      <video autoplay muted loop playsinline webkit-playsinline preload="auto" id="heroVideo">
         <source src="videos/hero-video.mp4" type="video/mp4">
       </video>
       <div class="hero-video-overlay"></div>
@@ -671,6 +671,16 @@
   initFades();
   document.querySelectorAll('a[href="#"]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
 
+  /* ── MOBILE AUTOPLAY FIX ── */
+const heroVideo = document.getElementById('heroVideo');
+if (heroVideo) {
+  heroVideo.muted = true;
+  const tryPlay = () => heroVideo.play().catch(() => {});
+  heroVideo.addEventListener('loadedmetadata', tryPlay);
+  document.addEventListener('touchstart', tryPlay, { once: true });
+  window.addEventListener('load', tryPlay);
+}
+    
   /* ── 5-SECOND THUMBNAIL LOOP ── */
   document.querySelectorAll('.wi-thumb').forEach(v=>{
     v.addEventListener('timeupdate',()=>{if(v.currentTime>5)v.currentTime=0});
