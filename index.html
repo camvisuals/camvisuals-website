@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <link rel="icon" type="image/png" href="./favicon-96x96.png?v=2" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="./favicon.svg?v=2" />
-<link rel="shortcut icon" href="./favicon.ico?v=2" />
-<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=2" />
-<link rel="manifest" href="./site.webmanifest?v=2" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CAMVISUALS</title>
+
+  <!-- FAVICON & MANIFEST (Optimierte Einbindung) -->
+  <link rel="icon" type="image/x-icon" href="./favicon.ico?v=3" />
+  <link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png?v=3" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=3" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=3" />
+  <link rel="manifest" href="./site.webmanifest?v=3" />
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
@@ -104,9 +107,7 @@
       75% { background-position: -8px 18px; }
     }
 
-    /* ══════════════════════════════════
-       NAV
-    ══════════════════════════════════ */
+    /* NAV */
     nav {
       position: fixed;
       top: 0;
@@ -287,7 +288,7 @@
       .hamburger { display: flex; }
     }
 
-    /* ── PAGES (Anpassung: padding-top für 100px Logo) ── */
+    /* PAGES */
     .page {
       min-height: 100vh;
       display: none;
@@ -298,9 +299,7 @@
       display: block;
     }
 
-    /* ══════════════════════════════════
-       HOME
-    ══════════════════════════════════ */
+    /* HOME */
     #home {
       min-height: 100vh;
       display: none;
@@ -339,7 +338,6 @@
       opacity: 1;
     }
 
-    /* VERLAUF: Unten dunkel nach oben aufhellend */
     .hero-video-overlay {
       position: absolute;
       inset: 0;
@@ -525,7 +523,7 @@
       opacity: 0.5;
     }
 
-    /* ── SECTION ── */
+    /* SECTION */
     .sec {
       padding: 60px var(--sec);
     }
@@ -553,7 +551,7 @@
       box-shadow: 0 0 6px rgba(245, 200, 0, .1);
     }
 
-    /* ── FILTER BAR ── */
+    /* FILTER BAR */
     .filter-bar {
       display: flex;
       gap: 4px;
@@ -592,9 +590,7 @@
       background: rgba(245, 200, 0, .06);
     }
 
-    /* ══════════════════════════════════
-       WORK GRID
-    ══════════════════════════════════ */
+    /* WORK GRID */
     .work-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -713,9 +709,7 @@
       }
     }
 
-    /* ══════════════════════════════════
-       LIGHTBOX
-    ══════════════════════════════════ */
+    /* LIGHTBOX */
     .lb {
       position: fixed;
       inset: 0;
@@ -895,9 +889,7 @@
       margin-top: 2px;
     }
 
-    /* ══════════════════════════════════
-       ÜBER UNS (TEAM) — LEICHT VERGRÖSSERT & 5:4 QUERFORMAT
-    ══════════════════════════════════ */
+    /* ÜBER UNS */
     .about-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -983,9 +975,7 @@
       flex-shrink: 0;
     }
 
-    /* ══════════════════════════════════
-       PRICELIST
-    ══════════════════════════════════ */
+    /* PRICELIST */
     .price-page {
       max-width: 800px;
       margin: 0 auto;
@@ -1135,9 +1125,7 @@
       margin-top: 3px;
     }
 
-    /* ══════════════════════════════════
-       CONTACT
-    ══════════════════════════════════ */
+    /* CONTACT */
     .contact-inner {
       text-align: center;
       padding: 80px var(--sec);
@@ -1255,7 +1243,7 @@
       color: var(--muted);
     }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer {
       padding: 24px var(--sec);
       border-top: 1px solid var(--border);
@@ -1273,9 +1261,7 @@
       text-transform: uppercase;
     }
 
-    /* ══════════════════════════════════
-       SPRACHAUSWAHL-MODAL
-    ══════════════════════════════════ */
+    /* SPRACHAUSWAHL-MODAL */
     .lang-modal {
       position: fixed;
       inset: 0;
@@ -1333,7 +1319,7 @@
       border-color: var(--yellow);
     }
 
-    /* ── FADE ── */
+    /* FADE */
     .fade-up {
       opacity: 0;
       transform: translateY(20px);
@@ -1609,7 +1595,7 @@
 
         <div class="price-row fade-up">
           <div class="price-row-left">
-            <div class="price-row-name" data-de="Promo Reel <span class='price-row-sup'>Mit Filmen</span>" data-en="Promo Reel <span class='price-row-sup'>With Filming</span>">Promo Reel <span class="price-row-sup">Mit Filmen</span></div>
+            <div class="price-row-name" data-de="Promo Reel <span class='price-row-sup'>Mit Filmen</span>" data-en="Promo Reel <span class='price-row-sup'>With Filming</span>">Promo Reel <span class="price-row-sup">With Filming</span></div>
             <div class="price-row-sub" data-de="Inkl. Drehtag" data-en="Incl. Shooting Day">Inkl. Drehtag</div>
           </div>
           <div class="price-row-right">
@@ -1678,12 +1664,10 @@
     function setLanguage(lang) {
       currentLang = lang;
       
-      // Update Sprache-Buttons Style
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang);
       });
 
-      // Ersetze alle Texte mit passendem data-de / data-en Attribute
       document.querySelectorAll('[data-de]').forEach(el => {
         const text = el.getAttribute(`data-${lang}`);
         if (text) {
@@ -1691,7 +1675,6 @@
         }
       });
 
-      // Aktiven Filter erneut anwenden, damit Message übersetzt wird
       const activeFilterBtn = document.querySelector('.filter-btn.on');
       if (activeFilterBtn) {
         const onClickAttr = activeFilterBtn.getAttribute('onclick');
