@@ -82,7 +82,7 @@
     .hamburger{display:flex}
   }
 
-  /* ── PAGES (Sicherheitsabstand für 100px Logo) ── */
+  /* ── PAGES (Anpassung: padding-top für 100px Logo) ── */
   .page{min-height:100vh;display:none;padding-top:140px}
   .page.active{display:block}
 
@@ -96,10 +96,8 @@
   .hero-video-wrap video{position:absolute;top:50%;left:50%;
     transform:translate(-50%,-50%);min-width:100%;min-height:100%;width:auto;height:auto;
     object-fit:cover;pointer-events:none}
-
-  /* VERLAUF: Unten dunkel nach oben aufhellend */
   .hero-video-overlay{position:absolute;inset:0;
-    background:linear-gradient(to top, rgba(10,10,8,1) 0%, rgba(10,10,8,0.75) 35%, rgba(10,10,8,0.25) 100%)}
+    background:linear-gradient(to top,rgba(10,10,8,1) 0%,rgba(10,10,8,.7) 30%,rgba(10,10,8,.2) 60%)}
 
   .hero-bg{position:absolute;inset:0;overflow:hidden;z-index:1}
   .hero-bg-inner{position:absolute;inset:0;
@@ -228,7 +226,7 @@
   .lb-sub-txt{font-size:11px;color:var(--muted);margin-top:2px}
 
   /* ══════════════════════════════════
-    ÜBER UNS (TEAM) — LEICHT VERGRÖSSERT & 5:4 QUERFORMAT
+    ÜBER UNS (TEAM) — LEICHT VERGRÖSSERT
   ══════════════════════════════════ */
   .about-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;max-width:960px;margin:20px auto 40px}
   @media(max-width:768px){.about-grid{grid-template-columns:1fr}}
@@ -464,7 +462,6 @@
         <!-- CHRISTIAN -->
         <div class="team-card fade-up">
           <div class="team-img-placeholder">
-            <!-- Um das Bild einzufügen, diesen auskommentierten img-Tag nutzen: -->
             <!-- <img src="images/christian.jpg" alt="Christian"> -->
             <span data-de="[ Bild Christian ]" data-en="[ Image Christian ]">[ Bild Christian ]</span>
           </div>
@@ -482,7 +479,6 @@
         <!-- MARTIM -->
         <div class="team-card fade-up">
           <div class="team-img-placeholder">
-            <!-- Um das Bild einzufügen, diesen auskommentierten img-Tag nutzen: -->
             <!-- <img src="images/martim.jpg" alt="Martim"> -->
             <span data-de="[ Bild Martim ]" data-en="[ Image Martim ]">[ Bild Martim ]</span>
           </div>
@@ -676,18 +672,18 @@
   document.querySelectorAll('a[href="#"]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
 
   /* ── MOBILE AUTOPLAY FIX ── */
-  const heroVideo = document.getElementById('heroVideo');
-  if (heroVideo) {
-    heroVideo.muted = true;
-    heroVideo.setAttribute('muted', '');
-    heroVideo.playsInline = true;
-    const tryPlay = () => heroVideo.play().catch(() => {});
-    tryPlay();
-    heroVideo.addEventListener('loadedmetadata', tryPlay);
-    heroVideo.addEventListener('canplay', tryPlay);
-    document.addEventListener('visibilitychange', () => { if (!document.hidden) tryPlay(); });
-  }
-
+const heroVideo = document.getElementById('heroVideo');
+if (heroVideo) {
+  heroVideo.muted = true;
+  heroVideo.setAttribute('muted', '');
+  heroVideo.playsInline = true;
+  const tryPlay = () => heroVideo.play().catch(() => {});
+  tryPlay();
+  heroVideo.addEventListener('loadedmetadata', tryPlay);
+  heroVideo.addEventListener('canplay', tryPlay);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) tryPlay(); });
+}
+    
   /* ── 5-SECOND THUMBNAIL LOOP ── */
   document.querySelectorAll('.wi-thumb').forEach(v=>{
     v.addEventListener('timeupdate',()=>{if(v.currentTime>5)v.currentTime=0});
