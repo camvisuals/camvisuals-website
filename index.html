@@ -326,6 +326,12 @@
       height: auto;
       object-fit: cover;
       pointer-events: none;
+      opacity: 0;
+      transition: opacity 1.4s ease;
+    }
+
+    .hero-video-wrap video.is-playing {
+      opacity: 1;
     }
 
     /* VERLAUF: Unten dunkel nach oben aufhellend */
@@ -1698,9 +1704,12 @@
       tryPlay();
       heroVideo.addEventListener('loadedmetadata', tryPlay);
       heroVideo.addEventListener('canplay', tryPlay);
+      heroVideo.addEventListener('playing', () => heroVideo.classList.add('is-playing'));
       document.addEventListener('visibilitychange', () => {
         if (!document.hidden) tryPlay();
       });
+      document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+      document.addEventListener('scroll', tryPlay, { once: true, passive: true });
     }
 
     /* ── 5-SECOND THUMBNAIL LOOP ── */
