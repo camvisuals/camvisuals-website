@@ -721,26 +721,19 @@ if (heroVideo) {
   }
 
   /* ── LIGHTBOX ── */
+/* ── LIGHTBOX ── */
   let carIdx=0,carFiles=[],carSlides=[];
 
   function openLB(el){
-    const content = el.querySelector('.lb-content');
-    const meta    = el.querySelector('.wo');
-    document.getElementById('lbTag').textContent   = meta.querySelector('.wo-tag')?.textContent   || '';
-    document.getElementById('lbTitle').textContent = meta.querySelector('.wo-title')?.textContent || '';
-    document.getElementById('lbSub').textContent   = meta.querySelector('.wo-sub')?.textContent   || '';
-
-    const med    = document.getElementById('lbMedia');
-    const iframe = content.querySelector('iframe');
+@@ -735,6 +13,7 @@ <h2 class="contact-h2 fade-up" data-de="Lass uns etwas<br><em>Unvergessliches</e
 
     if(iframe){
       let src = iframe.getAttribute('src') || '';
+      // Ensure autoplay parameter is present so it starts immediately
       if(src && !src.includes('autoplay=1')){
         src += (src.includes('?') ? '&' : '?') + 'autoplay=1';
       }
-      med.innerHTML = `<div class="lb-yt"><iframe src="${src}" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
-    } else {
-      carFiles = [...content.querySelectorAll('source')].map(s => s.getAttribute('src'));
+@@ -744,16 +23,13 @@ <h2 class="contact-h2 fade-up" data-de="Lass uns etwas<br><em>Unvergessliches</e
       carIdx = 0; carSlides = [];
       const dots   = carFiles.map((_,i) => `<span class="car-dot${i===0?' on':''}" onclick="goSlide(${i})"></span>`).join('');
       const slides = carFiles.map(src  => `<div class="car-slide"><video src="${src}" autoplay controls loop playsinline></video></div>`).join('');
@@ -752,14 +745,14 @@ if (heroVideo) {
           <div class="car-viewport"><div class="car-track" id="carTrack">${slides}</div></div>
           ${carFiles.length > 1 ? `<div class="car-controls">
             <button class="car-btn prev" onclick="prevSlide()">${prevText}</button>
+            <button class="car-btn prev" onclick="prevSlide()">Prev</button>
             <div class="car-dots">${dots}</div>
             <button class="car-btn next" onclick="nextSlide()">${nextText}</button>
+            <button class="car-btn next" onclick="nextSlide()">Next</button>
           </div>` : ''}
         </div>`;
       carSlides = [...med.querySelectorAll('.car-slide')];
-      syncCarousel();
-    }
-
+@@ -763,46 +39,3 @@ <h2 class="contact-h2 fade-up" data-de="Lass uns etwas<br><em>Unvergessliches</e
     document.getElementById('lb').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
