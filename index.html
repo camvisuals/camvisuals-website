@@ -597,38 +597,35 @@
       position: relative;
       width: 100%;
       aspect-ratio: 21/6;
-      margin-bottom: 32px;
+      margin-top: 32px;
       border: 1px dashed var(--border);
       overflow: hidden;
       background: var(--surface);
+      cursor: pointer;
+      transition: border-color 0.3s;
     }
 
+    .work-banner:hover { border-color: var(--border-hover); }
+
     @media (max-width: 768px) {
-      .work-banner { aspect-ratio: 4/3; }
+      .work-banner { aspect-ratio: 4/5; }
     }
 
     .work-banner-img {
       position: absolute;
       inset: 0;
       display: none;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .work-banner-img.active { display: flex; }
-
-    .work-banner-img span {
-      font-size: 10px;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .work-banner-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
+    }
+
+    .work-banner-img.lang-active.banner-desktop { display: block; }
+    .work-banner-img.lang-active.banner-mobile { display: none; }
+
+    @media (max-width: 768px) {
+      .work-banner-img.lang-active.banner-desktop { display: none; }
+      .work-banner-img.lang-active.banner-mobile { display: block; }
     }
 
     /* WORK GRID */
@@ -1367,7 +1364,7 @@
 
     .lang-popup-close:hover { color: var(--white); }
 
-   /* .lang-popup-corporate {
+    .lang-popup-corporate {
       font-size: 10px;
       letter-spacing: .1em;
       text-transform: uppercase;
@@ -1376,9 +1373,9 @@
       white-space: nowrap;
       border-bottom: 1px solid transparent;
       transition: border-color 0.3s;
-    } */
+    }
 
-    /* .lang-popup-corporate:hover { border-color: var(--yellow); } */
+    .lang-popup-corporate:hover { border-color: var(--yellow); }
 
     /* FADE */
     .fade-up {
@@ -1405,7 +1402,7 @@
       <button class="lang-popup-btn" onclick="chooseLanguage('de')">Deutsch</button>
       <button class="lang-popup-btn" onclick="chooseLanguage('en')">English</button>
     </div>
-  <!--  <a href="corporate.html" class="lang-popup-corporate">Corporate →</a> -->
+    <a href="corporate.html" class="lang-popup-corporate">Corporate →</a>
     <button class="lang-popup-close" onclick="closeLangPopup()" aria-label="Schliessen">✕</button>
   </div>
 
@@ -1562,17 +1559,15 @@
 
       <!-- EMPTY FILTER MESSAGE -->
       <div id="noWorkMsg" style="display:none; text-align:center; padding: 60px 0; color: var(--muted); font-size: 11px; letter-spacing: .2em; text-transform: uppercase;"></div>
+
+      <div class="work-banner fade-up" onclick="showPage('contact')">
+        <img class="work-banner-img lang-active banner-desktop" data-lang="de" data-device="desktop" src="images/banner_web_de.jpg" alt="Banner" loading="lazy" decoding="async">
+        <img class="work-banner-img banner-mobile" data-lang="de" data-device="mobile" src="images/banner_mobile_de.jpg" alt="Banner" loading="lazy" decoding="async">
+        <img class="work-banner-img banner-desktop" data-lang="en" data-device="desktop" src="images/banner_web_en.jpg" alt="Banner" loading="lazy" decoding="async">
+        <img class="work-banner-img banner-mobile" data-lang="en" data-device="mobile" src="images/banner_mobile_en.jpg" alt="Banner" loading="lazy" decoding="async">
+      </div>
     </div>
   </div>
-
-  <div class="work-banner fade-up">
-        <div class="work-banner-img active" data-lang="de">
-          <span>[ Banner Platzhalter · Deutsch ]</span>
-        </div>
-        <div class="work-banner-img" data-lang="en">
-          <span>[ Banner Placeholder · English ]</span>
-        </div>
-      </div>
 
   <!-- ÜBER UNS -->
   <div class="page" id="about">
@@ -1644,13 +1639,16 @@
 
   <script>
     /* ── SPRACH-STEUERUNG ── */
-    let currentLang = 'de';
+    let currentLang = localStorage.getItem('camvisuals_lang') || 'de';
 
     function setLanguage(lang) {
       currentLang = lang;
-      
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang);
+      localStorage.setItem('camvisuals_lang', lang);
+
+      document.querySelectorAll('.lang-switch').forEach(container => {
+        container.querySelectorAll('.lang-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang);
+        });
       });
 
       document.querySelectorAll('[data-de]').forEach(el => {
@@ -1661,7 +1659,7 @@
       });
 
       document.querySelectorAll('.work-banner-img').forEach(el => {
-        el.classList.toggle('active', el.dataset.lang === lang);
+        el.classList.toggle('lang-active', el.dataset.lang === lang);
       });
 
       const activeFilterBtn = document.querySelector('.filter-btn.on');
@@ -1684,8 +1682,13 @@
     }
 
     (function initLangPopup() {
-      const popup = document.getElementById('langPopup');
-      if (popup) setTimeout(() => popup.classList.add('show'), 600);
+      const savedLang = localStorage.getItem('camvisuals_lang');
+      if (savedLang) {
+        setLanguage(savedLang);
+      } else {
+        const popup = document.getElementById('langPopup');
+        if (popup) setTimeout(() => popup.classList.add('show'), 600);
+      }
     })();
 
     /* ── CURSOR ── */
