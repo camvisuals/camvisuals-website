@@ -118,7 +118,9 @@
       justify-content: space-between;
       align-items: center;
       padding: 16px var(--sec);
-      background: linear-gradient(to bottom, rgba(10, 10, 8, .97) 0%, transparent 100%);
+      background: rgba(10, 10, 8, .95);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(6px);
     }
 
     .nav-logo {
@@ -588,6 +590,45 @@
       border-color: var(--yellow);
       color: var(--yellow);
       background: rgba(245, 200, 0, .06);
+    }
+
+    /* WORK BANNER PLACEHOLDER */
+    .work-banner {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 21/6;
+      margin-bottom: 32px;
+      border: 1px dashed var(--border);
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    @media (max-width: 768px) {
+      .work-banner { aspect-ratio: 4/3; }
+    }
+
+    .work-banner-img {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .work-banner-img.active { display: flex; }
+
+    .work-banner-img span {
+      font-size: 10px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .work-banner-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     /* WORK GRID */
@@ -1253,63 +1294,91 @@
       text-transform: uppercase;
     }
 
-    /* SPRACHAUSWAHL-MODAL */
-    .lang-modal {
+    /* SPRACH-POPUP (klein, unten) */
+    .lang-popup {
       position: fixed;
-      inset: 0;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(24px);
       z-index: 9500;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(10, 10, 8, .97);
+      background: var(--surface);
+      border: 1px solid var(--border-hover);
+      padding: 18px 22px;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.5s ease;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .4);
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: calc(100vw - 40px);
     }
 
-    .lang-modal.open {
+    .lang-popup.show {
       opacity: 1;
+      transform: translateX(-50%) translateY(0);
       pointer-events: all;
     }
 
-    .lang-modal-box {
-      text-align: center;
-      padding: 0 var(--sec);
-    }
-
-    .lang-modal-title {
+    .lang-popup-title {
       font-size: 9px;
-      letter-spacing: .35em;
+      letter-spacing: .2em;
       text-transform: uppercase;
       color: var(--yellow);
-      margin-bottom: 28px;
+      white-space: nowrap;
     }
 
-    .lang-modal-choices {
+    .lang-popup-choices {
       display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    .lang-modal-btn {
+    .lang-popup-btn {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 13px;
-      letter-spacing: .2em;
+      font-size: 11px;
+      letter-spacing: .14em;
       text-transform: uppercase;
       color: var(--white);
       background: transparent;
-      border: 1px solid rgba(240, 237, 230, .18);
-      padding: 16px 40px;
+      border: 1px solid rgba(240, 237, 230, .25);
+      padding: 8px 18px;
       cursor: pointer;
       transition: all 0.3s;
     }
 
-    .lang-modal-btn:hover {
+    .lang-popup-btn:hover {
       color: var(--bg);
       background: var(--yellow);
       border-color: var(--yellow);
     }
+
+    .lang-popup-close {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 1;
+      padding: 4px;
+      transition: color 0.3s;
+    }
+
+    .lang-popup-close:hover { color: var(--white); }
+
+   /* .lang-popup-corporate {
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      text-decoration: none;
+      white-space: nowrap;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    } */
+
+    /* .lang-popup-corporate:hover { border-color: var(--yellow); } */
 
     /* FADE */
     .fade-up {
@@ -1329,15 +1398,15 @@
   <div class="cur" id="cur"></div>
   <div class="cur-r" id="curR"></div>
 
-  <!-- SPRACHAUSWAHL -->
-  <div class="lang-modal" id="langModal">
-    <div class="lang-modal-box">
-      <div class="lang-modal-title">Choose your language / Sprache wählen</div>
-      <div class="lang-modal-choices">
-        <button class="lang-modal-btn" onclick="chooseLanguage('de')">Deutsch</button>
-        <button class="lang-modal-btn" onclick="chooseLanguage('en')">English</button>
-      </div>
+  <!-- SPRACH-POPUP -->
+  <div class="lang-popup" id="langPopup">
+    <div class="lang-popup-title">DE / EN</div>
+    <div class="lang-popup-choices">
+      <button class="lang-popup-btn" onclick="chooseLanguage('de')">Deutsch</button>
+      <button class="lang-popup-btn" onclick="chooseLanguage('en')">English</button>
     </div>
+  <!--  <a href="corporate.html" class="lang-popup-corporate">Corporate →</a> -->
+    <button class="lang-popup-close" onclick="closeLangPopup()" aria-label="Schliessen">✕</button>
   </div>
 
   <!-- LIGHTBOX -->
@@ -1365,7 +1434,6 @@
       <a href="#" onclick="return showPage('home')" id="nav-home" class="active" data-de="Startseite" data-en="Home">Startseite</a>
       <a href="#" onclick="return showPage('work')" id="nav-work" data-de="Arbeiten" data-en="Work">Arbeiten</a>
       <a href="#" onclick="return showPage('about')" id="nav-about" data-de="Über uns" data-en="About us">Über uns</a>
-      <a href="#" onclick="return showPage('pricing')" id="nav-pricing" data-de="Preise" data-en="Pricing">Preise</a>
       <a href="#" onclick="return showPage('contact')" id="nav-contact" class="nav-cta" data-de="Kontaktieren" data-en="Get in touch">Kontaktieren</a>
       <div class="lang-switch">
         <button class="lang-btn active" onclick="setLanguage('de')">DE</button>
@@ -1381,7 +1449,6 @@
     <a href="#" onclick="mobileNav('home')" data-de="Startseite" data-en="Home">Startseite</a>
     <a href="#" onclick="mobileNav('work')" data-de="Arbeiten" data-en="Work">Arbeiten</a>
     <a href="#" onclick="mobileNav('about')" data-de="Über uns" data-en="About us">Über uns</a>
-    <a href="#" onclick="mobileNav('pricing')" data-de="Preise" data-en="Pricing">Preise</a>
     <a href="#" onclick="mobileNav('contact')" style="color:var(--yellow)" data-de="Kontaktieren" data-en="Get in touch">Kontaktieren</a>
     <div class="lang-switch" style="margin-left:0; margin-top:16px;">
       <button class="lang-btn active" onclick="setLanguage('de')">DE</button>
@@ -1430,6 +1497,16 @@
   <div class="page" id="work">
     <div class="sec">
       <div class="sec-label fade-up" data-de="Ausgewählte Arbeiten" data-en="Selected work">Ausgewählte Arbeiten</div>
+
+      <div class="work-banner fade-up">
+        <div class="work-banner-img active" data-lang="de">
+          <span>[ Banner Platzhalter · Deutsch ]</span>
+        </div>
+        <div class="work-banner-img" data-lang="en">
+          <span>[ Banner Placeholder · English ]</span>
+        </div>
+      </div>
+
       <div class="filter-bar fade-up">
         <button class="filter-btn on" onclick="filterWork('all',this)" data-de="Alle" data-en="All">Alle</button>
         <button class="filter-btn" onclick="filterWork('mv',this)" data-de="Musikvideos" data-en="Music Videos">Musikvideos</button>
@@ -1514,7 +1591,7 @@
             <li data-de="Organisiert Abläufe und behält den Gesamtüberblick" data-en="Organizes workflows and keeps track of the big picture">Organisiert Abläufe und behält den Gesamtüberblick</li>
             <li data-de="Führt Projekte von der Idee bis zur Fertigstellung" data-en="Leads projects from concept to final completion">Führt Projekte von der Idee bis zur Fertigstellung</li>
             <li data-de="Zusätzlich aktiv in Videografie und Editing" data-en="Additionally active in videography and editing">Zusätzlich aktiv in Videografie und Editing</li>
-            <li data-de="Mediamatiker EFZ, Fokus Marketing & Videoproduktion" data-en="Mediamatics apprentice, focus on marketing & video production">Mediamatiker EFZ, Fokus Marketing & Videoproduktion</li>
+            <li data-de="4. Lehrjahr Mediamatiker, Fokus Marketing & Videoproduktion" data-en="4th year Mediamatics apprentice, focus on marketing & video production">4. Lehrjahr Mediamatiker, Fokus Marketing & Videoproduktion</li>
           </ul>
         </div>
 
@@ -1530,90 +1607,8 @@
             <li data-de="Begleitet Projekte von der Aufnahme bis zum finalen Schnitt" data-en="Accompanies projects from shooting to the final edit">Begleitet Projekte von der Aufnahme bis zum finalen Schnitt</li>
             <li data-de="Fundiertes Gespür für Bildsprache, Dynamik und Look" data-en="Deep sense for visual language, dynamics, and look">Fundiertes Gespür für Bildsprache, Dynamik und Look</li>
             <li data-de="Zusätzlich aktiv in Planung und Umsetzung" data-en="Additionally active in planning and execution">Zusätzlich aktiv in Planung und Umsetzung</li>
-            <li data-de="Mediamatiker, Fokus Videoproduktion & Marketing" data-en="Mediamatics apprentice, focus on video production & marketing">Mediamatiker EFZ, Fokus Videoproduktion & Marketing</li>
+            <li data-de="4. Lehrjahr Mediamatiker, Fokus Marketing & Videoproduktion" data-en="4th year Mediamatics apprentice, focus on marketing & video production">4. Lehrjahr Mediamatiker, Fokus Marketing & Videoproduktion</li>
           </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PRICING -->
-  <div class="page" id="pricing">
-    <div class="sec">
-      <div class="sec-label fade-up" data-de="Preise" data-en="Pricing">Preise</div>
-      <div class="price-page">
-        <!-- BUNDLE -->
-        <div class="price-bundle fade-up">
-          <div class="price-bundle-badge" data-de="Empfohlen" data-en="Recommended">Empfohlen</div>
-          <div class="price-bundle-header">
-            <div class="price-bundle-name" data-de="Komplett-Paket" data-en="Complete Bundle">Komplett-Paket</div>
-            <div class="price-bundle-price">1'500.–</div>
-          </div>
-          <div class="price-bundle-items">
-            <div class="price-bundle-item" data-de="1x Musikvideo" data-en="1x Music Video">1x Musikvideo</div>
-            <div class="price-bundle-item" data-de="1x Promo-Video" data-en="1x Promo Video">1x Promo-Video</div>
-            <div class="price-bundle-item" data-de="1x Teaser-Video" data-en="1x Teaser Video">1x Teaser-Video</div>
-            <div class="price-bundle-item" data-de="Song / Album Cover" data-en="Song / Album Cover">Song / Album Cover</div>
-            <div class="price-bundle-item" data-de="1x Out Now Video" data-en="1x Out Now Video">1x Out Now Video</div>
-          </div>
-        </div>
-
-        <!-- EINZELPREISE -->
-        <div class="price-single-title fade-up" data-de="Einzelpreise" data-en="Single Prices">Einzelpreise</div>
-
-        <div class="price-row fade-up">
-          <div class="price-row-left">
-            <div class="price-row-name" data-de="Musikvideo" data-en="Music Video">Musikvideo</div>
-            <div class="price-row-sub" data-de="Konzept, Dreh & Schnitt" data-en="Concept, Shoot & Edit">Konzept, Dreh & Schnitt</div>
-          </div>
-          <div class="price-row-right">
-            <div class="price-row-chf">400.–</div>
-            <div class="price-row-unit">CHF / Min.</div>
-          </div>
-        </div>
-
-        <div class="price-row fade-up">
-          <div class="price-row-left">
-            <div class="price-row-name" data-de="Promo Reel <span class='price-row-sup'>Ohne Filmen</span>" data-en="Promo Reel <span class='price-row-sup'>Without Filming</span>">Promo Reel <span class="price-row-sup">Ohne Filmen</span></div>
-            <div class="price-row-sub" data-de="Bestehendes Material" data-en="Existing Material">Bestehendes Material</div>
-          </div>
-          <div class="price-row-right">
-            <div class="price-row-chf">100.–</div>
-            <div class="price-row-unit" data-de="CHF / Stk." data-en="CHF / Pcs.">CHF / Stk.</div>
-          </div>
-        </div>
-
-        <div class="price-row fade-up">
-          <div class="price-row-left">
-            <div class="price-row-name" data-de="Promo Reel <span class='price-row-sup'>Mit Filmen</span>" data-en="Promo Reel <span class='price-row-sup'>With Filming</span>">Promo Reel <span class="price-row-sup">With Filming</span></div>
-            <div class="price-row-sub" data-de="Inkl. Drehtag" data-en="Incl. Shooting Day">Inkl. Drehtag</div>
-          </div>
-          <div class="price-row-right">
-            <div class="price-row-chf">250.–</div>
-            <div class="price-row-unit" data-de="CHF / Stk." data-en="CHF / Pcs.">CHF / Stk.</div>
-          </div>
-        </div>
-
-        <div class="price-row fade-up">
-          <div class="price-row-left">
-            <div class="price-row-name" data-de="Song / Album Cover" data-en="Song / Album Cover">Song / Album Cover</div>
-            <div class="price-row-sub" data-de="Statisches Visual" data-en="Static Visual">Statisches Visual</div>
-          </div>
-          <div class="price-row-right">
-            <div class="price-row-chf">100.–</div>
-            <div class="price-row-unit">CHF</div>
-          </div>
-        </div>
-
-        <div class="price-row fade-up">
-          <div class="price-row-left">
-            <div class="price-row-name" data-de="Song / Album Cover <span class='price-row-sup'>Inkl. Visualizer</span>" data-en="Song / Album Cover <span class='price-row-sup'>Incl. Visualizer</span>">Song / Album Cover <span class="price-row-sup">Inkl. Visualizer</span></div>
-            <div class="price-row-sub" data-de="Statische und bewegte Visuals" data-en="Static and Motion Visuals">Statische und bewegte Visuals</div>
-          </div>
-          <div class="price-row-right">
-            <div class="price-row-chf">200.–</div>
-            <div class="price-row-unit">CHF</div>
-          </div>
         </div>
       </div>
     </div>
@@ -1623,8 +1618,8 @@
   <div class="page" id="contact">
     <div class="contact-inner">
       <div class="contact-glow"></div>
-      <h2 class="contact-h2 fade-up" data-de="Ideen wirken besser<br><em> wenn sie visualisiert sind</em>" data-en="Ideas look better<br><em>when visualized.</em>">Ideen wirken besser<br><em></em>wenn sie visualisiert sind</h2>
-      <a href="mailto:work@cam-visuals.com" class="contact-email fade-up">work@cam-visuals.com</a>
+      <h2 class="contact-h2 fade-up" data-de="Ideen wirken<br><em> wenn sie visualisiert sind</em>" data-en="Ideas look better<br><em>when visualized.</em>">Ideen wirken besser<br><em></em>wenn sie visualisiert sind</h2>
+      <a href="mailto:cam.visualss@gmail.com" class="contact-email fade-up">cam.visualss@gmail.com</a>
       <div class="contact-row fade-up">
         <a href="https://www.instagram.com/cam_visualss" target="_blank">Instagram</a>
         <a href="https://www.tiktok.com/@camvisualss" target="_blank">TikTok</a>
@@ -1665,6 +1660,10 @@
         }
       });
 
+      document.querySelectorAll('.work-banner-img').forEach(el => {
+        el.classList.toggle('active', el.dataset.lang === lang);
+      });
+
       const activeFilterBtn = document.querySelector('.filter-btn.on');
       if (activeFilterBtn) {
         const onClickAttr = activeFilterBtn.getAttribute('onclick');
@@ -1673,14 +1672,20 @@
       }
     }
 
-    /* ── SPRACHAUSWAHL-MODAL ── */
+    /* ── SPRACH-POPUP ── */
     function chooseLanguage(lang) {
       setLanguage(lang);
-      document.getElementById('langModal').classList.remove('open');
+      closeLangPopup();
     }
 
-    (function initLangModal() {
-      document.getElementById('langModal').classList.add('open');
+    function closeLangPopup() {
+      const popup = document.getElementById('langPopup');
+      if (popup) popup.classList.remove('show');
+    }
+
+    (function initLangPopup() {
+      const popup = document.getElementById('langPopup');
+      if (popup) setTimeout(() => popup.classList.add('show'), 600);
     })();
 
     /* ── CURSOR ── */
