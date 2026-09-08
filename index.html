@@ -1005,156 +1005,6 @@
       flex-shrink: 0;
     }
 
-    /* PRICELIST */
-    .price-page {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px 0 60px;
-    }
-
-    .price-bundle {
-      border: 2px solid var(--yellow);
-      padding: 36px;
-      position: relative;
-      margin-bottom: 48px;
-      background: rgba(245, 200, 0, .03);
-    }
-
-    .price-bundle-badge {
-      position: absolute;
-      top: -13px;
-      left: 28px;
-      background: var(--yellow);
-      color: var(--bg);
-      font-size: 9px;
-      letter-spacing: .28em;
-      text-transform: uppercase;
-      font-weight: 700;
-      padding: 4px 14px;
-    }
-
-    .price-bundle-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 20px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .price-bundle-name {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: clamp(20px, 3vw, 28px);
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .price-bundle-price {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(28px, 4vw, 40px);
-      color: var(--yellow);
-      letter-spacing: -.02em;
-      white-space: nowrap;
-    }
-
-    .price-bundle-items {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px 24px;
-    }
-
-    @media (max-width: 560px) { .price-bundle-items { grid-template-columns: 1fr; } }
-
-    .price-bundle-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 11px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .price-bundle-item::before {
-      content: '✓';
-      color: var(--yellow);
-      font-size: 12px;
-      flex-shrink: 0;
-    }
-
-    .price-single-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 20px;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .price-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
-      gap: 20px;
-    }
-
-    .price-row:last-child { border-bottom: none; }
-
-    .price-row-name {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 15px;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .price-row-sup {
-      font-size: 9px;
-      font-weight: 400;
-      letter-spacing: .18em;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    .price-row-sub {
-      font-size: 10px;
-      color: var(--muted);
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      margin-top: 4px;
-      font-style: italic;
-    }
-
-    .price-row-right {
-      text-align: right;
-      flex-shrink: 0;
-    }
-
-    .price-row-chf {
-      font-family: 'Playfair Display', serif;
-      font-size: 26px;
-      color: var(--yellow);
-      letter-spacing: -.01em;
-      line-height: 1;
-    }
-
-    .price-row-unit {
-      font-size: 9px;
-      color: var(--muted);
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      margin-top: 3px;
-    }
-
     /* CONTACT */
     .contact-inner {
       text-align: center;
@@ -1402,7 +1252,6 @@
       <button class="lang-popup-btn" onclick="chooseLanguage('de')">Deutsch</button>
       <button class="lang-popup-btn" onclick="chooseLanguage('en')">English</button>
     </div>
-    <!-- <a href="corporate.html" class="lang-popup-corporate">Corporate →</a> -->
     <button class="lang-popup-close" onclick="closeLangPopup()" aria-label="Schliessen">✕</button>
   </div>
 
@@ -1433,7 +1282,7 @@
       <a href="#" onclick="return showPage('about')" id="nav-about" data-de="Über uns" data-en="About us">Über uns</a>
       <a href="#" onclick="return showPage('contact')" id="nav-contact" class="nav-cta" data-de="Kontaktieren" data-en="Get in touch">Kontaktieren</a>
       <div class="lang-switch">
-        <button class="lang-btn active" onclick="setLanguage('de')">DE</button>
+        <button class="lang-btn" onclick="setLanguage('de')">DE</button>
         <button class="lang-btn" onclick="setLanguage('en')">EN</button>
       </div>
     </div>
@@ -1448,7 +1297,7 @@
     <a href="#" onclick="mobileNav('about')" data-de="Über uns" data-en="About us">Über uns</a>
     <a href="#" onclick="mobileNav('contact')" style="color:var(--yellow)" data-de="Kontaktieren" data-en="Get in touch">Kontaktieren</a>
     <div class="lang-switch" style="margin-left:0; margin-top:16px;">
-      <button class="lang-btn active" onclick="setLanguage('de')">DE</button>
+      <button class="lang-btn" onclick="setLanguage('de')">DE</button>
       <button class="lang-btn" onclick="setLanguage('en')">EN</button>
     </div>
   </div>
@@ -1561,7 +1410,7 @@
       <div id="noWorkMsg" style="display:none; text-align:center; padding: 60px 0; color: var(--muted); font-size: 11px; letter-spacing: .2em; text-transform: uppercase;"></div>
 
       <div class="work-banner fade-up" onclick="showPage('contact')">
-        <img class="work-banner-img lang-active banner-desktop" data-lang="de" data-device="desktop" src="images/banner_web_de.jpg" alt="Banner" loading="lazy" decoding="async">
+        <img class="work-banner-img banner-desktop" data-lang="de" data-device="desktop" src="images/banner_web_de.jpg" alt="Banner" loading="lazy" decoding="async">
         <img class="work-banner-img banner-mobile" data-lang="de" data-device="mobile" src="images/banner_mobile_de.jpg" alt="Banner" loading="lazy" decoding="async">
         <img class="work-banner-img banner-desktop" data-lang="en" data-device="desktop" src="images/banner_web_en.jpg" alt="Banner" loading="lazy" decoding="async">
         <img class="work-banner-img banner-mobile" data-lang="en" data-device="mobile" src="images/banner_mobile_en.jpg" alt="Banner" loading="lazy" decoding="async">
@@ -1639,18 +1488,24 @@
 
   <script>
     /* ── SPRACH-STEUERUNG ── */
-    let currentLang = localStorage.getItem('camvisuals_lang') || 'de';
+    let currentLang = 'de';
 
     function setLanguage(lang) {
       currentLang = lang;
-      localStorage.setItem('camvisuals_lang', lang);
+      
+      try {
+        localStorage.setItem('camvisuals_lang', lang);
+      } catch (e) {
+        console.warn('LocalStorage ist in diesem Browser deaktiviert.');
+      }
 
-      document.querySelectorAll('.lang-switch').forEach(container => {
-        container.querySelectorAll('.lang-btn').forEach(btn => {
-          btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang);
-        });
+      // Buttons (DE / EN) umschalten
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        const isTarget = btn.textContent.trim().toLowerCase() === lang.toLowerCase();
+        btn.classList.toggle('active', isTarget);
       });
 
+      // Texte mit data-de / data-en austauschen
       document.querySelectorAll('[data-de]').forEach(el => {
         const text = el.getAttribute(`data-${lang}`);
         if (text) {
@@ -1658,15 +1513,19 @@
         }
       });
 
+      // Banner umschalten
       document.querySelectorAll('.work-banner-img').forEach(el => {
         el.classList.toggle('lang-active', el.dataset.lang === lang);
       });
 
+      // Filter-Text aktualisieren, falls Filter leer ist
       const activeFilterBtn = document.querySelector('.filter-btn.on');
       if (activeFilterBtn) {
         const onClickAttr = activeFilterBtn.getAttribute('onclick');
-        const match = onClickAttr.match(/filterWork\('([^']+)'/);
-        if (match) filterWork(match[1], activeFilterBtn);
+        if (onClickAttr) {
+          const match = onClickAttr.match(/filterWork\('([^']+)'/);
+          if (match) filterWork(match[1], activeFilterBtn);
+        }
       }
     }
 
@@ -1681,15 +1540,23 @@
       if (popup) popup.classList.remove('show');
     }
 
-    (function initLangPopup() {
-      const savedLang = localStorage.getItem('camvisuals_lang');
+    // Beim Laden der Seite die gespeicherte Sprache anwenden
+    document.addEventListener('DOMContentLoaded', () => {
+      let savedLang = null;
+      try {
+        savedLang = localStorage.getItem('camvisuals_lang');
+      } catch (e) {
+        console.warn('LocalStorage nicht zugreifbar.');
+      }
+
       if (savedLang) {
         setLanguage(savedLang);
       } else {
+        setLanguage('de'); // Standard-Sprache setzen
         const popup = document.getElementById('langPopup');
         if (popup) setTimeout(() => popup.classList.add('show'), 600);
       }
-    })();
+    });
 
     /* ── CURSOR ── */
     const cur = document.getElementById('cur');
