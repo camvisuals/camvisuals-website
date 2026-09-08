@@ -118,9 +118,9 @@
       justify-content: space-between;
       align-items: center;
       padding: 16px var(--sec);
-      background: rgba(10, 10, 8, .95);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(6px);
+      background: transparent;
+      border-bottom: none;
+      backdrop-filter: none;
     }
 
     .nav-logo {
@@ -288,6 +288,11 @@
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
+      nav {
+        background: rgba(10, 10, 8, .95);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(6px);
+      }
     }
 
     /* PAGES */
@@ -603,6 +608,8 @@
       background: var(--surface);
       cursor: pointer;
       transition: border-color 0.3s;
+      display: block;
+      text-decoration: none;
     }
 
     .work-banner:hover { border-color: var(--border-hover); }
@@ -1409,12 +1416,12 @@
       <!-- EMPTY FILTER MESSAGE -->
       <div id="noWorkMsg" style="display:none; text-align:center; padding: 60px 0; color: var(--muted); font-size: 11px; letter-spacing: .2em; text-transform: uppercase;"></div>
 
-      <div class="work-banner fade-up" onclick="showPage('contact')">
+      <a href="mailto:work@cam-visuals.com" class="work-banner fade-up">
         <img class="work-banner-img banner-desktop" data-lang="de" data-device="desktop" src="images/banner_web_de.jpg" alt="Banner" loading="lazy" decoding="async">
         <img class="work-banner-img banner-mobile" data-lang="de" data-device="mobile" src="images/banner_mobile_de.jpg" alt="Banner" loading="lazy" decoding="async">
         <img class="work-banner-img banner-desktop" data-lang="en" data-device="desktop" src="images/banner_web_en.jpg" alt="Banner" loading="lazy" decoding="async">
         <img class="work-banner-img banner-mobile" data-lang="en" data-device="mobile" src="images/banner_mobile_en.jpg" alt="Banner" loading="lazy" decoding="async">
-      </div>
+      </a>
     </div>
   </div>
 
@@ -1463,7 +1470,7 @@
     <div class="contact-inner">
       <div class="contact-glow"></div>
       <h2 class="contact-h2 fade-up" data-de="Ideen wirken<br><em> wenn sie visualisiert sind</em>" data-en="Ideas look better<br><em>when visualized.</em>">Ideen wirken besser<br><em></em>wenn sie visualisiert sind</h2>
-      <a href="mailto: work@cam-visuals.com" class="contact-email fade-up">work@cam-visuals.com</a>
+      <a href="mailto:work@cam-visuals.com" class="contact-email fade-up">work@cam-visuals.com</a>
       <div class="contact-row fade-up">
         <a href="https://www.instagram.com/cam_visualss" target="_blank">Instagram</a>
         <a href="https://www.tiktok.com/@camvisualss" target="_blank">TikTok</a>
