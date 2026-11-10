@@ -38,7 +38,7 @@
   <!-- FONTS: nur genutzte Schnitte, display=swap, preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400;0,800;1,800&display=swap" rel="stylesheet">
 
   <!-- STRUKTURIERTE DATEN -->
   <script type="application/ld+json">
@@ -162,7 +162,7 @@
     body {
       background: var(--bg);
       color: var(--white);
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Rethink Sans', sans-serif;
       overflow-x: hidden;
     }
 
@@ -256,7 +256,7 @@
     .lang-btn {
       background: transparent; border: 1px solid var(--border); color: var(--muted);
       font-size: 9px; padding: 4px 8px; cursor: pointer; letter-spacing: .1em;
-      transition: all 0.3s; font-family: 'Space Grotesk', sans-serif;
+      transition: all 0.3s; font-family: 'Rethink Sans', sans-serif;
     }
     .lang-btn:hover { color: var(--white); border-color: var(--border-hover); }
     .lang-btn.active { color: var(--yellow); border-color: var(--yellow); background: rgba(245, 200, 0, .06); }
@@ -330,9 +330,9 @@
     @media (max-width: 768px) { .hero-content { margin-bottom: 60px; } }
 
     h1.hero-title {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Rethink Sans', sans-serif;
       font-size: clamp(40px, 7vw, 96px);
-      text-transform: uppercase; line-height: 1.1; font-weight: 400;
+      text-transform: uppercase; line-height: 1.1; font-weight: 800;
       letter-spacing: -.03em; margin-bottom: 28px;
     }
     h1.hero-title em { font-style: italic; color: var(--yellow); text-shadow: 0 0 30px rgba(245, 200, 0, .4); }
@@ -384,7 +384,7 @@
     }
     @keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     .mq-item {
-      font-family: 'Playfair Display', serif; font-size: 12px; letter-spacing: .3em;
+      font-family: 'Rethink Sans', sans-serif; font-weight: 800; font-size: 12px; letter-spacing: .3em;
       text-transform: uppercase; color: rgba(240, 237, 230, .14);
       display: flex; align-items: center; gap: 60px;
     }
@@ -395,7 +395,7 @@
     @media (max-width: 768px) { .sec { padding: 48px var(--sec); } }
 
     .sec-label {
-      font-size: 8px; font-weight: 400; letter-spacing: .45em; text-transform: uppercase;
+      font-size: 8px; font-weight: 800; letter-spacing: .45em; text-transform: uppercase;
       color: var(--yellow); margin-bottom: 40px; display: flex; align-items: center; gap: 16px;
     }
     .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--border); box-shadow: 0 0 6px rgba(245, 200, 0, .1); }
@@ -405,7 +405,7 @@
     .filter-btn {
       font-size: 9px; letter-spacing: .28em; text-transform: uppercase; padding: 8px 20px;
       border: 1px solid var(--border); background: transparent; color: var(--muted);
-      cursor: pointer; transition: all 0.3s; font-family: 'Space Grotesk', sans-serif;
+      cursor: pointer; transition: all 0.3s; font-family: 'Rethink Sans', sans-serif;
     }
     @media (max-width: 768px) { .filter-btn { padding: 8px 14px; font-size: 8px; } }
     .filter-btn:hover { border-color: var(--border-hover); color: var(--white); }
@@ -442,7 +442,7 @@
     }
 
     .wo-tag { font-size: 8px; letter-spacing: .35em; text-transform: uppercase; color: var(--yellow); margin-bottom: 5px; }
-    .wo-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 400; margin-bottom: 3px; }
+    .wo-title { font-family: 'Rethink Sans', sans-serif; font-size: 18px; font-weight: 800; margin-bottom: 3px; }
     @media (max-width: 560px) { .wo-title { font-size: 15px; } }
     .wo-sub { font-size: 10px; color: var(--muted); letter-spacing: .06em; }
 
@@ -473,7 +473,7 @@
       position: absolute; top: -38px; right: 0; font-size: 9px; letter-spacing: .3em;
       text-transform: uppercase; color: var(--muted); cursor: pointer; transition: color 0.3s;
       display: flex; align-items: center; gap: 8px;
-      background: none; border: none; font-family: 'Space Grotesk', sans-serif;
+      background: none; border: none; font-family: 'Rethink Sans', sans-serif;
     }
     @media (max-width: 768px) { .lb-close { top: -32px; font-size: 8px; } }
     .lb-close::before { content: ''; display: block; width: 16px; height: 1px; background: currentColor; }
@@ -490,7 +490,7 @@
     .car-btn {
       font-size: 9px; letter-spacing: .28em; text-transform: uppercase; color: var(--muted);
       cursor: pointer; transition: color 0.3s; display: flex; align-items: center; gap: 8px;
-      background: none; border: none; font-family: 'Space Grotesk', sans-serif;
+      background: none; border: none; font-family: 'Rethink Sans', sans-serif;
     }
     .car-btn:hover { color: var(--yellow); }
     .car-btn.prev::before { content: ''; width: 20px; height: 1px; background: currentColor; }
@@ -501,7 +501,7 @@
 
     .lb-meta { margin-top: 14px; display: flex; justify-content: space-between; align-items: flex-end; }
     .lb-tag-txt { font-size: 9px; letter-spacing: .3em; text-transform: uppercase; color: var(--yellow); }
-    .lb-title-txt { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 400; margin-top: 3px; }
+    .lb-title-txt { font-family: 'Rethink Sans', sans-serif; font-size: 20px; font-weight: 800; margin-top: 3px; }
     @media (max-width: 560px) { .lb-title-txt { font-size: 16px; } }
     .lb-sub-txt { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
@@ -511,7 +511,7 @@
     @media (max-width: 768px) { .svc-grid { grid-template-columns: 1fr; } }
     .svc-card { background: var(--surface); border: 1px solid var(--border); padding: 28px; transition: border-color 0.4s; }
     .svc-card:hover { border-color: var(--border-hover); }
-    .svc-card h3, .steps h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 400; margin-bottom: 10px; }
+    .svc-card h3, .steps h3 { font-family: 'Rethink Sans', sans-serif; font-size: 22px; font-weight: 800; margin-bottom: 10px; }
     .svc-card p, .steps p, .faq p { font-size: 13px; line-height: 1.7; color: var(--muted); }
     .steps { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
     @media (max-width: 900px) { .steps { grid-template-columns: repeat(2, 1fr); } }
@@ -532,7 +532,7 @@
     /* RECHTLICHES / FOOTER-LINKS */
     .team-sub { font-size: 13px; line-height: 1.6; color: var(--muted); }
     .legal { max-width: 780px; }
-    .legal h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 400; margin: 36px 0 10px; }
+    .legal h3 { font-family: 'Rethink Sans', sans-serif; font-size: 20px; font-weight: 800; margin: 36px 0 10px; }
     .legal p { font-size: 13px; line-height: 1.8; color: rgba(240, 237, 230, .7); margin-bottom: 10px; }
     .legal a { color: var(--yellow); }
     .ph { color: var(--yellow); }
@@ -552,7 +552,7 @@
     }
     .team-img-placeholder img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
-    .team-name { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 400; margin-bottom: 4px; color: var(--white); }
+    .team-name { font-family: 'Rethink Sans', sans-serif; font-size: 26px; font-weight: 800; margin-bottom: 4px; color: var(--white); }
     .team-role { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--yellow); margin-bottom: 16px; }
     .team-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
     .team-list li { font-size: 12px; line-height: 1.6; color: var(--muted); display: flex; align-items: flex-start; gap: 8px; }
@@ -566,7 +566,7 @@
       background: radial-gradient(ellipse, rgba(245, 200, 0, .04) 0%, transparent 70%); pointer-events: none;
     }
     .contact-h2 {
-      font-family: 'Playfair Display', serif; font-size: clamp(36px, 6vw, 84px); font-weight: 400;
+      font-family: 'Rethink Sans', sans-serif; font-size: clamp(36px, 6vw, 84px); font-weight: 800;
       line-height: .95; letter-spacing: -.03em; margin-bottom: 44px;
     }
     .contact-h2 em { font-style: italic; color: var(--yellow); text-shadow: 0 0 40px rgba(245, 200, 0, .3); }
@@ -620,7 +620,7 @@
     .lang-popup-title { font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--yellow); white-space: nowrap; }
     .lang-popup-choices { display: flex; gap: 8px; }
     .lang-popup-btn {
-      font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+      font-family: 'Rethink Sans', sans-serif; font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
       color: var(--white); background: transparent; border: 1px solid rgba(240, 237, 230, .25);
       padding: 8px 18px; cursor: pointer; transition: all 0.3s;
     }
@@ -902,7 +902,6 @@
   <div class="page" id="about">
     <div class="sec">
       <h2 class="sec-label fade-up" data-de="Über uns" data-en="About us">Über uns</h2>
-      <p class="intro fade-up" data-de="CAMVISUALS ist das Videoproduktions-Duo von Christian und Martim aus Luzern. Gemeinsam begleiten wir jedes Projekt von der Idee bis zum finalen Schnitt." data-en="CAMVISUALS is the video production duo of Christian and Martim from Lucerne. Together we accompany every project from the idea to the final cut.">CAMVISUALS ist das Videoproduktions-Duo von Christian und Martim aus Luzern. Gemeinsam begleiten wir jedes Projekt von der Idee bis zum finalen Schnitt.</p>
       <div class="about-grid">
         <!-- CHRISTIAN -->
         <div class="team-card fade-up">
