@@ -294,3 +294,10 @@ if (toTop) {
   toggleTop();
   toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }));
 }
+
+/* ── Header-Unschärfe erst nach dem Scrollen ── */
+(function () {
+  const upd = () => document.body.classList.toggle('scrolled', window.scrollY > 20);
+  window.addEventListener('scroll', upd, { passive: true });
+  upd();
+})();
