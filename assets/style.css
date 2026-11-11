@@ -1,4 +1,4 @@
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --bg: #0a0a08;
@@ -538,4 +538,3 @@ h1, h2, h3 { text-wrap: balance; }
 /* ── FAQ ── */
 .faq summary { padding-right: 4px; }
 .faq details { transition: background 0.3s; }
-
