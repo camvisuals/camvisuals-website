@@ -513,6 +513,17 @@ body[data-page="home"] nav.main-nav {
   -webkit-backdrop-filter: none; backdrop-filter: none;
 }
 
+/* ── Header: oben gross und durchsichtig, nach dem Scrollen schlanker Balken ── */
+nav.main-nav { transition: padding .35s ease, background-color .35s ease, border-color .35s ease, -webkit-backdrop-filter .35s ease, backdrop-filter .35s ease; border-bottom: 1px solid transparent; }
+.nav-logo img { transition: width .35s ease, height .35s ease; }
+body.scrolled nav.main-nav,
+body[data-page="home"].scrolled nav.main-nav {
+  padding-top: 8px; padding-bottom: 8px;
+  background: rgba(10, 10, 8, .78); border-bottom: 1px solid var(--border);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+}
+body.scrolled .nav-logo img { width: 44px; height: 44px; }
+
 /* ── NACH-OBEN-BUTTON ── */
 .to-top {
   position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px));
